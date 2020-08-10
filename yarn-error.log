@@ -1,0 +1,50 @@
+Arguments: 
+  /home/edwin/.local/opt/n/bin/node /home/edwin/.local/opt/n/bin/yarn ls --depth 0 --json
+
+PATH: 
+  /home/edwin/.wasmtime/bin:/home/edwin/.local/share/yarn/global/node_modules/.bin:/var/lib/snapd/snap/bin:/snap/bin:/home/edwin/.rvm/bin:/home/edwin/.local/share/cargo/bin:/home/edwin/.poetry/bin:/home/edwin/.local/opt/n/bin:/home/edwin/.local/opt/krew/bin:/home/edwin/.local/opt/go/path/bin:/home/edwin/.local/opt/flutter/bin:/home/edwin/.local/share/deno/bin/bin:/home/edwin/.local/share/deno/bin:/home/edwin/.dots/scripts:/home/edwin/.local/bin:/home/edwin/.wasmtime/bin:/home/edwin/.local/share/yarn/global/node_modules/.bin:/var/lib/snapd/snap/bin:/snap/bin:/home/edwin/.rvm/bin:/home/edwin/.local/share/cargo/bin:/home/edwin/.poetry/bin:/home/edwin/.local/opt/n/bin:/home/edwin/.local/opt/krew/bin:/home/edwin/.local/opt/go/path/bin:/home/edwin/.local/opt/flutter/bin:/home/edwin/.local/share/deno/bin/bin:/home/edwin/.local/share/deno/bin:/home/edwin/.dots/scripts:/home/edwin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  14.7.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/edwin/docs/programming/repos/log/package.json: Unexpected string in JSON at position 293
+      at JSON.parse (<anonymous>)
+      at /home/edwin/.local/opt/n/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/edwin/.local/opt/n/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/edwin/.local/opt/n/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+  	"name": "@fox-land/log",
+  	"version": "0.1.0",
+  	"description": "Logging utility",
+  	"scripts": {
+  		"start": ""
+  	},
+  		"devDependencies": {
+  		"@types/jest": "^26.0.4",
+  		"@types/node": "^14.0.23",
+  		"jest": "^26.1.0",
+  		"remark": "^12.0.1",
+  		"ts-jest": "^26.1.2",
+  		"typescript": "^3.9.6"
+  	}
+  	"main": "index.js",
+  	"keywords": [],
+  	"author": "",
+  	"license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
