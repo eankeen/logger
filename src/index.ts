@@ -39,17 +39,17 @@ export class Logger4j {
 	}
 	public warn(text: string): void {
 		if (this.oneOf(['debug', 'info', 'warn'])) {
-			console.error(`${c.yellow('▶ WARN  |')} ${text}`)
+			console.warn(`${c.yellow('▶ WARN  |')} ${text}`)
 		}
 	}
 	public info(text: string): void {
 		if (this.oneOf(['debug', 'info'])) {
-			console.error(`${c.blue('▶ INFO  |')} ${text}`)
+			console.info(`${c.blue('▶ INFO  |')} ${text}`)
 		}
 	}
 	public debug(text: string): void {
 		if (this.oneOf(['debug'])) {
-			console.error(`${c.cyanBright('▶ DEBUG |')} ${text}`)
+			console.debug(`${c.cyanBright('▶ DEBUG |')} ${text}`)
 		}
 	}
 }
@@ -60,31 +60,63 @@ export class Logger4j {
  * protocol (RFC 5425)
  */
 export class LoggerSyslog {
-	constructor() {}
+	#level: string
 
-	emerg(text: string): void {
-		console.error(text)
+	constructor({
+		level = Object.prototype.hasOwnProperty.call(process.env, 'DdEBUG')
+			? 'debug'
+			: 'info',
+	}: Logger4jOptions = {}) {
+		this.#level = level
 	}
-	alert(text: string): void {
-		console.error(text)
+
+	private oneOf(matchingCandidates: string[]): boolean {
+		if (this.#level === 'all') return true
+		if (this.#level === 'none') return false
+
+		return new Set(matchingCandidates).has(this.#level)
 	}
-	crit(text: string): void {
-		console.error(text)
+	public emerg(text: string): void {
+		if (
+			this.oneOf(['debug', 'info', 'notice', 'warning', 'emerg', 'alert'])
+		) {
+			console.debug(`${c.magenta('▶ EMERG |')} ${text}`)
+		}
 	}
-	err(text: string): void {
-		console.error(text)
+	public alert(text: string): void {
+		if (this.oneOf(['debug', 'info', 'notice', 'warning', 'crit', 'alert'])) {
+			console.debug(`${c.magenta('▶ ALERT |')} ${text}`)
+		}
 	}
-	warning(text: string): void {
-		console.warn(text)
+	public crit(text: string): void {
+		if (this.oneOf(['debug', 'info', 'notice', 'warning', 'crit'])) {
+			console.debug(`${c.red('▶ CRIT |')} ${text}`)
+		}
 	}
-	notice(text: string): void {
-		console.info(text)
+	public err(text: string): void {
+		if (this.oneOf(['debug', 'info', 'notice', 'warning', 'err'])) {
+			console.debug(`${c.red('▶ ERR |')} ${text}`)
+		}
 	}
-	info(text: string): void {
-		console.info(text)
+	public warning(text: string): void {
+		if (this.oneOf(['debug', 'info', 'notice', 'warning'])) {
+			console.debug(`${c.yellow('▶ WARNING |')} ${text}`)
+		}
 	}
-	debug(text: string): void {
-		console.debug(text)
+	public notice(text: string): void {
+		if (this.oneOf(['debug', 'info', 'notice'])) {
+			console.debug(`${c.yellow('▶ NOTICE |')} ${text}`)
+		}
+	}
+	public info(text: string): void {
+		if (this.oneOf(['debug', 'info'])) {
+			console.debug(`${c.blue('▶ INFO |')} ${text}`)
+		}
+	}
+	public debug(text: string): void {
+		if (this.oneOf(['debug'])) {
+			console.debug(`${c.cyanBright('▶ DEBUG |')} ${text}`)
+		}
 	}
 }
 
